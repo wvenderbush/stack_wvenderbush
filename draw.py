@@ -2,6 +2,12 @@ from display import *
 from matrix import *
 from math import *
 
+def push(stack):
+    stack.append(list(stack[0]))
+
+def pop(stack):
+    stack.pop(0)
+
 def add_polygon( points, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_point( points, x0, y0, z0 )
     add_point( points, x1, y1, z1 )
@@ -91,7 +97,6 @@ def add_sphere( edges, cx, cy, cz, r, step ):
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop+1):
             index = lat * num_steps + longt
-            print int(num_steps/step)
 
             add_polygon(edges,  
                      points[(index) % int(num_steps/step)][0],
@@ -185,7 +190,6 @@ def generate_torus( cx, cy, cz, r0, r1, step ):
     circ_start = 0
     circ_stop = num_steps
 
-    print num_steps
     
     for rotation in range(rot_start, rot_stop):
         rot = step * rotation
